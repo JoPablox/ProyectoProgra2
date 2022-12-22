@@ -191,10 +191,24 @@ public class PanelPrincipal extends javax.swing.JFrame implements ActionListener
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        PanelPersonas pP = new PanelPersonas();
+        pP.setSize(650, 600);
+        pP.setLocation(0 , 0);
+        Contenedor.removeAll();
+        Contenedor.add(pP, BorderLayout.CENTER);
+        Contenedor.revalidate();
+        Contenedor.repaint();
     }                                        
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        PanelMovimientos pM = new PanelMovimientos();
+        pM.setSize(650, 600);
+        pM.setLocation(0 , 0);
+        Contenedor.removeAll();
+        Contenedor.add(pM, BorderLayout.CENTER);
+        Contenedor.revalidate();
+        Contenedor.repaint();
     }                                        
 /**
      * @param args the command line arguments
