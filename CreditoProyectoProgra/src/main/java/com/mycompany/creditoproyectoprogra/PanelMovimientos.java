@@ -49,7 +49,7 @@ public class PanelMovimientos extends javax.swing.JPanel {
         jCBestado = new javax.swing.JComboBox<>();
         ID = new javax.swing.JTextField();
         Concepto = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTIdCredDeb = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -85,7 +85,7 @@ public class PanelMovimientos extends javax.swing.JPanel {
             }
         });
 
-        jCBestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprovado", "Denegado", "En Estudio" }));
+        jCBestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprobado", "Denegado", "En Estudio" }));
         jCBestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBestadoActionPerformed(evt);
@@ -98,10 +98,10 @@ public class PanelMovimientos extends javax.swing.JPanel {
             }
         });
 
-        jTextField3.setText(" ");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTIdCredDeb.setText(" ");
+        jTIdCredDeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTIdCredDebActionPerformed(evt);
             }
         });
 
@@ -111,7 +111,7 @@ public class PanelMovimientos extends javax.swing.JPanel {
 
         jLabel4.setText("Concepto:");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Id Credito/Debito");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,13 +129,10 @@ public class PanelMovimientos extends javax.swing.JPanel {
                     .addComponent(ID, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                     .addComponent(jCBestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Concepto)
-                    .addComponent(jTextField3))
+                    .addComponent(jTIdCredDeb))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,8 +142,11 @@ public class PanelMovimientos extends javax.swing.JPanel {
                                     .addComponent(jButton2)
                                     .addGap(27, 27, 27)
                                     .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(104, 104, 104))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,11 +167,11 @@ public class PanelMovimientos extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTIdCredDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
@@ -186,7 +186,7 @@ public class PanelMovimientos extends javax.swing.JPanel {
         File archivo;
         try
         {
-            final BufferedReader hola = new BufferedReader (new FileReader("/Users/georgearthur/Desktop/Universidad/Programacion II/Examenfinal/movimientos.txt") );
+            final BufferedReader hola = new BufferedReader (new FileReader("C:\\Users\\JPabloA\\Desktop\\datosMovimientos.txt") );
             String line = "";
             while ( (line = hola.readLine() ) != null)
             {
@@ -217,20 +217,21 @@ public class PanelMovimientos extends javax.swing.JPanel {
        File archivo;
         FileWriter escribir;
         PrintWriter linea;
-        archivo = new File("/Users/georgearthur/Desktop/Universidad/Programacion II/Examenfinal/movimientos.txt");        // TODO add your handling code here:
+        archivo = new File("C:\\Users\\JPabloA\\Desktop\\datosMovimientos.txt");        // TODO add your handling code here:
         try
         {
             escribir = new FileWriter(archivo,true);
             linea = new PrintWriter(escribir);
-            linea.print(jCBestado.getSelectedItem()+ " ");
-            linea.print(ID.getText()+ " ");
-            linea.print(Concepto.getText()+ " ");
+            linea.print(jCBestado.getSelectedItem()+ " ; ");
+            linea.print(ID.getText()+ " ; ");
+            linea.print(Concepto.getText()+ " ; ");
+            linea.print(jTIdCredDeb.getText());
             linea.println("");
             linea.close();
             escribir.close();
             ID.setText("");
             Concepto.setText("");
-
+            jTIdCredDeb.setText("");
         }
         catch(IOException e)
         {
@@ -245,9 +246,9 @@ public class PanelMovimientos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ConceptoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTIdCredDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdCredDebActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTIdCredDebActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -264,7 +265,7 @@ public class PanelMovimientos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTIdCredDeb;
     private javax.swing.JTextArea salida;
     // End of variables declaration//GEN-END:variables
 }

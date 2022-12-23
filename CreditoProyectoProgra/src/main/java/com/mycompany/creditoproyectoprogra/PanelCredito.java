@@ -380,6 +380,7 @@ public class PanelCredito extends javax.swing.JPanel {
             hola.close();
             if(encontrado==false){
                 JOptionPane.showMessageDialog(null, "Debito no encontrado");
+                jTbusqueda.setText("");
             }
         }
         catch(FileNotFoundException e){
@@ -423,7 +424,7 @@ public class PanelCredito extends javax.swing.JPanel {
             jTIdCredito.setText("");
             jTIdPropietario.setText("");
             jTMontoInicial.setText("");
-            jComboEstado.setSelectedIndex(1);
+            jComboEstado.setSelectedIndex(0);
         }
         catch(IOException e){
             

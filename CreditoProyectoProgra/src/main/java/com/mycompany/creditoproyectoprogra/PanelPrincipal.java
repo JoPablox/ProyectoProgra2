@@ -23,6 +23,13 @@ public class PanelPrincipal extends javax.swing.JFrame implements ActionListener
      */
     public PanelPrincipal() {
         initComponents();
+        PanelCredito pC = new PanelCredito();
+        pC.setSize(650, 600);
+        pC.setLocation(0 , 0);
+        Contenedor.removeAll();
+        Contenedor.add(pC, BorderLayout.CENTER);
+        Contenedor.revalidate();
+        Contenedor.repaint();
     }
 
     /**
@@ -40,9 +47,6 @@ public class PanelPrincipal extends javax.swing.JFrame implements ActionListener
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         Contenedor = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,18 +130,6 @@ public class PanelPrincipal extends javax.swing.JFrame implements ActionListener
             ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-
-        jMenuBar1.setBackground(new java.awt.Color(102, 153, 255));
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 51));
-        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,9 +243,6 @@ public class PanelPrincipal extends javax.swing.JFrame implements ActionListener
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration                   
 
