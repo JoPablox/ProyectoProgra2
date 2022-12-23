@@ -1,6 +1,15 @@
 
 package com.mycompany.creditoproyectoprogra;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author JPabloA
@@ -12,7 +21,60 @@ public class PanelCredito extends javax.swing.JPanel {
      */
     public PanelCredito() {
         initComponents();
-        
+        File archivo1;
+        FileWriter escribir;
+        PrintWriter linea;
+        archivo1 = new File("C:\\Users\\JPabloA\\Desktop\\datosCreditos.txt");
+        if (!archivo1.exists()){
+            try{
+                archivo1.createNewFile();
+                escribir = new FileWriter(archivo1, true);
+                linea = new PrintWriter(escribir);
+                linea.close();
+                escribir.close();
+                
+            }
+            catch(IOException e){
+                
+            }
+        }
+        else{
+            try{
+                escribir = new FileWriter(archivo1, true);
+                linea = new PrintWriter(escribir);
+                linea.close();
+                escribir.close();
+            }
+            catch(IOException e){
+                
+            }
+        }
+        File archivo2;
+        archivo2 = new File("C:\\Users\\JPabloA\\Desktop\\datosMovimientos.txt");
+        if (!archivo2.exists()){
+            try{
+                archivo2.createNewFile();
+                escribir = new FileWriter(archivo2, true);
+                linea = new PrintWriter(escribir);
+                linea.close();
+                escribir.close();
+                
+            }
+            catch(IOException e){
+                
+            }
+        }
+        else{
+            try{
+                escribir = new FileWriter(archivo2, true);
+                linea = new PrintWriter(escribir);
+                linea.close();
+                escribir.close();
+            }
+            catch(IOException e){
+                
+            }
+        }
             
     }
 /*
@@ -128,30 +190,28 @@ public class PanelCredito extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablaDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTbusqueda = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
+        jComboEstado = new javax.swing.JComboBox<>();
+        jTMontoInicial = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTIdPropietario = new javax.swing.JTextField();
+        jTIdCredito = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTidMovimiento = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jTMonto = new javax.swing.JTextField();
+        jComboTipo = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
@@ -167,13 +227,10 @@ public class PanelCredito extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -188,12 +245,12 @@ public class PanelCredito extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jTablaDatos);
+        if (jTablaDatos.getColumnModel().getColumnCount() > 0) {
+            jTablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            jTablaDatos.getColumnModel().getColumn(1).setResizable(false);
+            jTablaDatos.getColumnModel().getColumn(2).setResizable(false);
+            jTablaDatos.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 610, 241));
@@ -203,22 +260,11 @@ public class PanelCredito extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 320, 30));
 
         jLabel2.setText("Movimentos de Credito");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
-        jLabel3.setText("Buscar todos los creditos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, -1, -1));
-
-        jButton2.setText("Visuallizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 120, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
+        jPanel1.add(jTbusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 120, -1));
 
         jLabel4.setText("Ingrese el Credito a buscar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -234,20 +280,20 @@ public class PanelCredito extends javax.swing.JPanel {
         jLabel8.setText("Estado");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprobado", "Denegado", "En Estudio" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprobado", "Denegado", "En Estudio" }));
+        jComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboEstadoActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 120, -1));
+        jPanel2.add(jComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 120, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTMontoInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTMontoInicialActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 120, -1));
+        jPanel2.add(jTMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 120, -1));
 
         jLabel7.setText("Monto Inicial");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
@@ -255,13 +301,13 @@ public class PanelCredito extends javax.swing.JPanel {
         jLabel6.setText("ID Propietario");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTIdPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTIdPropietarioActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 120, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 120, -1));
+        jPanel2.add(jTIdPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 120, -1));
+        jPanel2.add(jTIdCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 120, -1));
 
         jLabel5.setText("ID Credito");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -277,82 +323,192 @@ public class PanelCredito extends javax.swing.JPanel {
         jLabel10.setText("Id Movimiento");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTidMovimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTidMovimientoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 120, -1));
+        jPanel1.add(jTidMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 120, -1));
 
         jLabel11.setText("Monto");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, -1, -1));
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTMontoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 120, -1));
+        jPanel1.add(jTMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 120, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pago", "Extrafinanciamiento" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 120, -1));
+        jComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pago", "Extrafinanciamiento" }));
+        jPanel1.add(jComboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 120, -1));
 
         jLabel12.setText("Tipo");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
 
         jButton4.setText("Agregar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 570, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 620));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+                String texto = jTbusqueda.getText();
+        File archivo;
+        try{
+            final BufferedReader hola = new BufferedReader(new FileReader("C:\\Users\\JPabloA\\Desktop\\datosCreditos.txt"));
+            String line = "";
+            boolean encontrado=false;
+            while ((line = hola.readLine())!= null){
+                String[] datos = line.split(";");
+                if(datos[0].equals(texto)){                    
+                    DefaultTableModel model = (DefaultTableModel) jTablaDatos.getModel();
+                    model.removeRow(0);
+                    model.addRow(datos);
+                    jTablaDatos.setModel(model);
+                    jTbusqueda.setText("");
+                    encontrado=true;
+                    break;
+                }
+                
+            }
+            hola.close();
+            if(encontrado==false){
+                JOptionPane.showMessageDialog(null, "Debito no encontrado");
+            }
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jComboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jComboEstadoActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jTIdPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdPropietarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jTIdPropietarioActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTMontoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTMontoInicialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTMontoInicialActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        File archivo;
+        FileWriter escribir;
+        PrintWriter linea;
+        archivo = new File("C:\\Users\\JPabloA\\Desktop\\datosCreditos.txt");
+        
+        try{
+            archivo.createNewFile();
+            escribir = new FileWriter(archivo, true);
+            linea = new PrintWriter(escribir);
+            linea.print(jTIdCredito.getText()+";");
+            linea.print(jTIdPropietario.getText()+";");
+            linea.print(jTMontoInicial.getText()+";");
+            linea.print(jComboEstado.getSelectedItem().toString());
+            linea.println("");
+            linea.close();
+            escribir.close();
+            jTIdCredito.setText("");
+            jTIdPropietario.setText("");
+            jTMontoInicial.setText("");
+            jComboEstado.setSelectedIndex(1);
+        }
+        catch(IOException e){
+            
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTMontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTMontoActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTidMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTidMovimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTidMovimientoActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        File archivo;
+        FileWriter escribir;
+        PrintWriter linea;
+        archivo = new File("C:\\Users\\JPabloA\\Desktop\\datosMovimientos.txt");
+        
+        try{
+            String datoBusqueda=jTbusqueda.getText();
+            System.out.println(datoBusqueda);
+            if(datoBusqueda!=""){
+                if(BusquedaArchivo(datoBusqueda)==true){
+                    archivo.createNewFile();
+                    escribir = new FileWriter(archivo, true);
+                    linea = new PrintWriter(escribir);
+                    linea.print(jTidMovimiento.getText()+";");
+                    linea.print(jTMonto.getText()+";");
+                    linea.print(jComboTipo.getSelectedItem().toString());
+                    linea.println("");
+                    linea.close();
+                    escribir.close();
+                    jTidMovimiento.setText("");
+                    jTMonto.setText("");
+                }
+                else{
+                     JOptionPane.showMessageDialog(null, "Credito no encontrado");
+                     jTbusqueda.setText("");
+                }
+                
+            }
+            else{
+              JOptionPane.showMessageDialog(null, "Espacio de Credito vacio");  
+            }
+            
 
+        }
+        catch(IOException e){
+            
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private boolean BusquedaArchivo(String i) throws FileNotFoundException, IOException{
+        File archivo;
+        FileWriter escribir;
+        PrintWriter linea;
+        archivo = new File("C:\\Users\\JPabloA\\Desktop\\datosCreditos.txt");
+        final BufferedReader hola = new BufferedReader(new FileReader("C:\\Users\\JPabloA\\Desktop\\datosCreditos.txt"));
+            String line = "";
+        while((line = hola.readLine())!= null){
+            String[] datos = line.split(";");
+            System.out.println(i + " == " + datos[0]);
+            if(i.equals(datos[0])){
+                return true;
+            }
+                
+        }
+        return false;
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboEstado;
+    private javax.swing.JComboBox<String> jComboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -362,12 +518,12 @@ public class PanelCredito extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTIdCredito;
+    private javax.swing.JTextField jTIdPropietario;
+    private javax.swing.JTextField jTMonto;
+    private javax.swing.JTextField jTMontoInicial;
+    private javax.swing.JTable jTablaDatos;
+    private javax.swing.JTextField jTbusqueda;
+    private javax.swing.JTextField jTidMovimiento;
     // End of variables declaration//GEN-END:variables
 }
